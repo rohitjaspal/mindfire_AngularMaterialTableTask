@@ -1,0 +1,22 @@
+.tableFixHead {
+  width: 130px;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+  .tableFixHead tbody {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  height: 150px;
+}
+.tableFixHead thead tr {
+  display: block;
+}
+.tableFixHead th,
+.tableFixHead  td {
+  padding: 5px 10px;
+  width: 120px;
+}
+th {
+  background: #ABDD93;
+}

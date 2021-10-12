@@ -1,0 +1,115 @@
+<div id="page">
+<mat-form-field id="filter">
+    <input matInput  [ngModel]="globalFilter" (ngModelChange)="applyFilter($event)" placeholder="Filter">
+  </mat-form-field>
+
+  <div fxLayout="column">
+    <div fxLayoutAlign="space-around start">
+      <div>
+  <table mat-table [dataSource]="dataSource"  #sort1="matSort" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
+
+     <!-- checkbox column -->
+
+     <ng-container matColumnDef="select">
+         <th mat-header-cell *matHeaderCellDef>
+            Select
+        </th>
+        <td mat-cell *matCellDef="let row">
+            <mat-checkbox name="checkbox"  [(ngModel)] = "row.checked" (change) ="getCheckboxesData(row)">
+
+            </mat-checkbox>
+        </td>
+
+     </ng-container>
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> No. 
+        <div>
+        <mat-form-field>
+    <input matInput class="form-field" [formControl]="positionFilter" placeholder="Postion Filter">
+  </mat-form-field>
+        </div>
+      </th>
+      <td class="lm-2" mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name 
+         <div>
+        <mat-form-field>
+    <input matInput class="form-field" [formControl]="nameFilter" placeholder="Name Filter">
+  </mat-form-field>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator hidePageSize="true" #paginator
+                      [pageSize]="10"
+                      [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator>
+  </div>
+  <div>
+  <table mat-table [dataSource]="dataSource2" #sort2="matSort" matSort  matSortActive="name" matSortDirection="asc" (matSortChange)="sortData($event)" class="mat-elevation-z8">
+
+    <!-- checkbox column -->
+
+    <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+            select  
+       </th>
+       <td mat-cell *matCellDef="let row">
+           <mat-checkbox name="checkbox"  [(ngModel)] = "row.checked" (change) ="getSecondCheckboxesData(row)">
+
+           </mat-checkbox>
+       </td>
+
+    </ng-container>
+ 
+   <!-- Position Column -->
+   <ng-container matColumnDef="position">
+     <th mat-header-cell *matHeaderCellDef mat-sort-header="position"> No. 
+       <div>
+       <mat-form-field>
+   <input matInput class="form-field" [formControl]="positionFilters" placeholder="Postion Filter">
+ </mat-form-field>
+       </div>
+     </th>
+     <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+   </ng-container>
+ 
+   <!-- Name Column -->
+   <ng-container matColumnDef="name">
+     <th mat-header-cell *matHeaderCellDef mat-sort-header="subject"> subject
+        <div>
+       <mat-form-field>
+   <input matInput class="form-field" [formControl]="subjectFilter" placeholder="Subject Filter">
+ </mat-form-field>
+       </div>
+     </th>
+     <td mat-cell *matCellDef="let element"> {{element.subject}} </td>
+   </ng-container>
+ 
+   
+   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+ </table>
+ <mat-paginator hidePageSize="true" #paginator2
+                      [pageSize]="10"
+                      [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator>
+  </div>
+ </div>
+ </div>
+
+ <br/>
+ <app-certificateform></app-certificateform>
+</div>
+ 
